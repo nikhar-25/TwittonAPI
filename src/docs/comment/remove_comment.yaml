@@ -1,0 +1,57 @@
+swagger: '2.0'
+info:
+  title: Remove Comment API
+  description: API for removing a comment from a tweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Remove a comment
+description: Remove a comment from a tweet
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: body
+    in: body
+    description: JSON object containing the tweet ID, user ID, and comment ID
+    required: true
+    schema:
+      type: object
+      properties:
+        tweetId:
+          type: string
+          description: The ID of the tweet from which to remove the comment
+        userId:
+          type: string
+          description: The ID of the user who added the comment
+        id:
+          type: string
+          description: The ID of the comment to remove
+responses:
+  200:
+    description: Comment removed successfully
+    schema:
+      type: object
+      properties:
+        comment:
+          type: integer
+          description: The ID of the removed comment
+  400:
+    description: Bad request. Invalid input data or error occurred during comment removal
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

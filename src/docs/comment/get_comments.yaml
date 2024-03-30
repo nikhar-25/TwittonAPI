@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  title: Get Tweet Comments API
+  description: API for retrieving comments for a tweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Get comments for a tweet
+description: Retrieve comments for a specific tweet
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: tweetId
+    in: query
+    description: The ID of the tweet for which to retrieve comments
+    required: true
+    type: string
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        comments:
+          type: array
+          items:
+            type: object
+            properties:
+              firstname:
+                type: string
+                description: The first name of the commenter
+              lastname:
+                type: string
+                description: The last name of the commenter
+              username:
+                type: string
+                description: The username of the commenter
+              avatar:
+                type: string
+                description: The avatar URL of the commenter
+  400:
+    description: Bad request. Invalid input data or error occurred during comment retrieval
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

@@ -1,0 +1,33 @@
+for retrieving information about the current user
+---
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: User
+summary: Get information about the current user
+description: Retrieves details of the currently authenticated user
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        username:
+          type: string
+          description: The username of the current user
+        email:
+          type: string
+          description: The email address of the current user
+  401:
+    description: Unauthorized. JWT token is missing or invalid
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

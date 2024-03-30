@@ -1,0 +1,30 @@
+Get Followers and Following
+---
+tags:
+  - Follower
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: query
+    name: userid
+    schema:
+      type: integer
+    description: Search query string
+    required: true
+  - in: query
+    name: myid
+    schema:
+      type: integer
+    description: Search query string
+    required: true
+responses:
+  200:
+    description: When a user successfully gets its information
+
+  400:
+    description: Information not found, either userid or myid is invalid

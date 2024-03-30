@@ -1,0 +1,65 @@
+swagger: '2.0'
+info:
+  title: Add Retweet API
+  description: API for adding a retweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Retweet
+summary: Add a retweet
+description: Add a retweet to a tweet and increment its retweet count.
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: body
+    in: body
+    description: JSON object containing the user ID and tweet ID
+    required: true
+    schema:
+      type: object
+      properties:
+        userId:
+          type: string
+          description: The ID of the user performing the retweet
+        tweetId:
+          type: string
+          description: The ID of the tweet being retweeted
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the retweet
+        userId:
+          type: string
+          description: The ID of the user who performed the retweet
+        tweetId:
+          type: string
+          description: The ID of the tweet that was retweeted
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Description of the error

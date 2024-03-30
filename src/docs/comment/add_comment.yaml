@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  title: Add Comment API
+  description: API for adding a comment to a tweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Add a comment
+description: Add a comment to a tweet
+consumes:
+  - multipart/form-data
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: file
+    in: formData
+    type: file
+    required: false
+    description: The media file associated with the comment (optional)
+  - name: tweetId
+    in: formData
+    type: string
+    required: true
+    description: The ID of the tweet to comment on
+  - name: userId
+    in: formData
+    type: string
+    required: true
+    description: The ID of the user adding the comment
+  - name: text
+    in: formData
+    type: string
+    required: true
+    description: The text content of the comment
+responses:
+  200:
+    description: Comment added successfully
+    schema:
+      type: object
+      properties:
+        comment:
+          $ref: '#/definitions/Comment'
+  400:
+    description: Bad request. Invalid input data or error occurred during comment addition
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

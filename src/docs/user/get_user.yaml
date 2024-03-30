@@ -1,0 +1,24 @@
+Get User by Username
+---
+tags:
+  - User
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: query
+    name: username
+    schema:
+      type: string
+    description: Search query string
+    required: true
+responses:
+  200:
+    description: When a user successfully edits its information
+
+  400:
+    description: Fails to Edit due to bad request data, or user not found

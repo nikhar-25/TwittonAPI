@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  title: Tweet API
+  description: API for managing tweets
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Like a tweet
+description: Like a tweet and increment its like count.
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+  - name: body
+    in: body
+    description: JSON object containing the tweet ID and user ID
+    required: true
+    schema:
+      type: object
+      properties:
+        tweetId:
+          type: string
+          description: The ID of the tweet to like
+        userId:
+          type: string
+          description: The ID of the user liking the tweet
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        like:
+          $ref: '#/definitions/Like'
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error
+  403:
+    description: Error response when tweet is already liked by user
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

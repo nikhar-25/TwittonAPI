@@ -1,0 +1,71 @@
+swagger: '2.0'
+info:
+  title: Tweet API
+  description: API for managing tweets
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Delete Tweet 
+description: delete tweet and its associated by tweetid
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+  - name: body
+    in: body
+    description: JSON object containing the tweet ID
+    required: true
+    schema:
+      type: object
+      properties:
+        tweetid:
+          type: string
+          description: The ID of the tweet to be removed
+    example:
+      tweetid: "123"
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        tweet:
+          type: integer
+          description: Number of tweets deleted
+        content:
+          type: object
+          properties:
+            like:
+              type: integer
+              description: Number of likes deleted
+            comments:
+              type: integer
+              description: Number of comments deleted
+            retweets:
+              type: integer
+              description: Number of retweets deleted
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error
+
+securityDefinitions:
+  JWTAuth:
+    type: apiKey
+    in: header
+    name: Authorization
+    description: JWT token in the format 'Bearer <token>'
