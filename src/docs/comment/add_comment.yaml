@@ -49,9 +49,6 @@ responses:
     description: Comment added successfully
     schema:
       type: object
-      properties:
-        comment:
-          $ref: '#/definitions/Comment'
   400:
     description: Bad request. Invalid input data or error occurred during comment addition
     schema:

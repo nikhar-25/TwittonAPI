@@ -43,8 +43,6 @@ responses:
     schema:
       type: object
       properties:
-        tweet:
-          $ref: '#/definitions/Tweet'
   '400':
     description: Bad request. Invalid input data or error occurred during tweet creation
     schema:
