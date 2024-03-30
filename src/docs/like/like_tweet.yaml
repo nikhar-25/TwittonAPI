@@ -46,9 +46,6 @@ responses:
     description: Successful response
     schema:
       type: object
-      properties:
-        like:
-          $ref: '#/definitions/Like'
   400:
     description: Error response
     schema:
