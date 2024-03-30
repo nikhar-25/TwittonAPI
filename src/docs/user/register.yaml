@@ -1,0 +1,59 @@
+User Registration
+---
+tags:
+  - User
+parameters:
+  - name: username
+    in: formData
+    type: string
+    required: true
+    description: The username of the user
+  - name: email
+    in: formData
+    type: string
+    format: email
+    required: true
+    description: The email address of the user
+  - name: password
+    in: formData
+    type: string
+    format: password
+    required: true
+    description: The password of the user
+  - name: first_name
+    in: formData
+    type: string
+    required: true
+    description: The first name of the user
+  - name: last_name
+    in: formData
+    type: string
+    required: true
+    description: The last name of the user
+  - name: location
+    in: formData
+    type: string
+    required: true
+    description: The location of the user
+    enum: [United States, Canada, United Kingdom, Australia, India, China, Japan, Germany, France, Brazil]
+  - name: dob
+    in: formData
+    type: string
+    format: date
+    required: true
+    description: The date of birth of the user (format YYYY-MM-DD)
+  - name: bio
+    in: formData
+    type: string
+    required: true
+    description: The biography of the user
+  - name: avatar
+    in: formData
+    type: file
+    required: false
+    description: The avatar image of the user (optional)
+responses:
+  201:
+    description: User successfully registered
+  400:
+    description: Bad request. Invalid input data or error occurred during user registration

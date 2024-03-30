@@ -1,0 +1,26 @@
+to retrieve users who are not followed by the specified user
+this code fetches users who are not followed by the specified user, excluding the specified user themselves
+---
+title: Who Follow API
+tags:
+  - Feed
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: query
+    name: userid
+    schema:
+      type: integer
+    description: Search query string by userid
+    required: true
+responses:
+  200:
+    description: When a user successfully gets its information
+
+  400:
+    description: Information not found, search query is invalid

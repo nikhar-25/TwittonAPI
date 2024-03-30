@@ -1,0 +1,65 @@
+swagger: '2.0'
+info:
+  title: Unlike Tweet API
+  description: API for unliking a tweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Unlike a tweet
+description: Unlike a tweet and decrement its like count.
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+  - name: body
+    in: body
+    description: JSON object containing the tweet ID
+    required: true
+    schema:
+      type: object
+      properties:
+        tweetid:
+          type: string
+          description: The ID of the tweet to unlike
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        unlike:
+          type: string
+          description: Message indicating successful unlike action
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error
+  403:
+    description: Error response when tweet is already unliked by user
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

@@ -1,0 +1,37 @@
+to add a bookmark for a tweet
+---
+tags:
+  - Bookmark
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: body
+    description: The body should contain the userid,tweetid.Add a bookmark for a tweet
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "userid"
+        - "tweetid"
+      properties:
+        userid:
+          type: integer
+          example: 1
+        tweetid:
+          type: integer
+          example: 1
+responses:
+  200:
+    description: When a user Bookmark added successfully
+
+  400:
+    description: Bad request. Validation error in request body
+  
+  403:
+    description: Forbidden. Tweet is already in the bookmark list

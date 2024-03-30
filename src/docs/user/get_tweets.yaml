@@ -1,0 +1,28 @@
+Get Tweets by UserId
+---
+tags:
+  - User
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: query
+    name: userid
+    schema:
+      type: integer
+    description: Search query string
+  - in: query
+    name: myid
+    schema:
+      type: integer
+    description: Search query string
+responses:
+  200:
+    description: When a user successfully gets its information
+
+  400:
+    description: Fails to Edit due to bad request data, or user not found

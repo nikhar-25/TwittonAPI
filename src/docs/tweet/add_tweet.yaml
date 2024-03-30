@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  title: Add Tweet API
+  description: API to add a new tweet with optional media
+  version: '1.0'
+basePath: /api/v1/tweet
+schemes:
+  - http
+consumes:
+  - multipart/form-data
+produces:
+  - application/json
+summary: Add Tweet 
+description: add tweet along with media from the userid
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: formData
+    name: text
+    type: string
+    required: true
+    description: The text content of the tweet
+  - in: formData
+    name: userid
+    type: integer
+    required: true
+    description: The ID of the user creating the tweet
+  - in: formData
+    name: file
+    type: file
+    required: false
+    description: Optional media file to attach to the tweet
+tags:
+  - name: Tweet
+responses:
+  '200':
+    description: Tweet added successfully
+    schema:
+      type: object
+      properties:
+        tweet:
+          $ref: '#/definitions/Tweet'
+  '400':
+    description: Bad request. Invalid input data or error occurred during tweet creation
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message

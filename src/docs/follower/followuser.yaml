@@ -1,0 +1,36 @@
+Toggle follow/unfollow based on existing relationship
+---
+tags:
+  - Follower
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - name: body
+    description: The body should contain the FollowerId and FollowingId to check if they have relationship
+    in: body
+    required: true
+    schema:
+      type: object
+      required:
+        - "followed"
+        - "follower"
+      properties:
+        followed:
+          type: "userid"
+          example: "1"
+        follower:
+          type: "userid"
+          example: "2"
+responses:
+  200:
+    description: When Both FollowerId and FollowingId follow
+  204:
+    description: When Both FollowerId and FollowingId unfollow
+
+  400:
+    description: Fails, FollowerId or FollowingId not found

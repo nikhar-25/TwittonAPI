@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  title: Tweet API
+  description: API for managing tweets
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Get Tweet Details
+description: Retrieve details of a tweet along with whether it is liked or retweeted by the current user.
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+  - name: tweetid
+    in: query
+    type: string
+    required: true
+    description: The ID of the tweet to retrieve
+  - name: username
+    in: query
+    type: string
+    required: true
+    description: The username of the tweet author
+  - name: myid
+    in: query
+    type: string
+    required: true
+    description: The ID of the current user
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        tweet:
+          type: object
+          properties:
+            # Define properties of the tweet object here
+        selfLiked:
+          type: boolean
+          description: Indicates if the tweet is liked by the current user
+        selfRetweeted:
+          type: boolean
+          description: Indicates if the tweet is retweeted by the current user
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error

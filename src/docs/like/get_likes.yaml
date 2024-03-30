@@ -1,0 +1,72 @@
+swagger: '2.0'
+info:
+  title: Get Tweet Likes API
+  description: API for retrieving likes on a tweet
+  version: '1.0'
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Tweet
+summary: Get tweet likes
+description: Retrieve users who liked a specific tweet.
+parameters:
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+    description: JWT token in the format 'Bearer <token>'
+  - in: header
+    name: Authorization
+    required: true
+    schema:
+      type: string
+      example: "Bearer <JWT>"
+  - name: tweetid
+    in: query
+    type: string
+    required: true
+    description: The ID of the tweet to retrieve likes for
+responses:
+  200:
+    description: Successful response
+    schema:
+      type: object
+      properties:
+        likes:
+          type: array
+          items:
+            type: object
+            properties:
+              firstname:
+                type: string
+                description: The first name of the user who liked the tweet
+              lastname:
+                type: string
+                description: The last name of the user who liked the tweet
+              username:
+                type: string
+                description: The username of the user who liked the tweet
+              avatar:
+                type: string
+                description: The avatar URL of the user who liked the tweet
+              bio:
+                type: string
+                description: The bio of the user who liked the tweet
+              tweetid:
+                type: string
+                description: The id of the tweet
+  400:
+    description: Error response
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Description of the error
